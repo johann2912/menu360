@@ -1,3 +1,5 @@
+---
+
 ## 📌 Menú360 - Restaurant Menu & Order Management API 🍽️  
 
 Menú360 is a **REST API** that allows restaurants to manage their menus and receive customer orders in an organized and efficient way. Each restaurant operates independently, ensuring secure and isolated data access.  
@@ -9,7 +11,7 @@ Menú360 is a **REST API** that allows restaurants to manage their menus and rec
 - **Order status workflow (`pending`, `in preparation`, `ready`, `delivered`).**  
 - **Secure authentication with JWT.**  
 
----
+
 
 ## 📌 Business Logic  
 
@@ -22,7 +24,6 @@ Menú360 is a **REST API** that allows restaurants to manage their menus and rec
 | **Employee**           | Processes and updates order statuses. |
 | **Customer**           | Views restaurants, browses menus, and places orders. |
 
----
 
 ### 🔹 Business Rules  
 
@@ -44,8 +45,6 @@ Menú360 is a **REST API** that allows restaurants to manage their menus and rec
 9️⃣ **Restaurant admins can add employees.**  
 🔟 **A customer can cancel an order ONLY if it is still `pending`.**  
 
----
-
 ## 📌 Customer Flow  
 
 1️⃣ Registers on the platform.  
@@ -55,8 +54,6 @@ Menú360 is a **REST API** that allows restaurants to manage their menus and rec
 5️⃣ Tracks the order status in real time.  
 6️⃣ Can cancel the order only if it is still `pending`.  
 
----
-
 ## 📌 Restaurant Admin Flow  
 
 1️⃣ Registers on the platform and creates a restaurant.  
@@ -65,3 +62,5 @@ Menú360 is a **REST API** that allows restaurants to manage their menus and rec
 4️⃣ Updates order statuses until they are delivered.  
 5️⃣ Can close the restaurant to stop receiving orders.  
 6️⃣ Can only delete the restaurant if there are no active orders.  
+
+---
