@@ -75,41 +75,42 @@ Menú360 follows a circular architecture (also known as clean or hexagonal archi
 
 ## 📌 Folder Structure
 
+```
 menu360/
-│── cmd/                                              <!-- 📌 Application entry point -->
-│   ├── main.go                                       <!-- Starts the server and loads modules -->
-│── config/                                           <!-- 📌 Global configuration -->
-│   ├── database.go                                   <!-- Connection to PostgreSQL or MongoDB -->
-│   ├── env.go                                        <!-- Loads environment variables -->
+│── cmd/                                              # 📌 Application entry point
+│   ├── main.go                                       # Starts the server and loads modules
+│── config/                                           # 📌 Global configuration
+│   ├── database.go                                   # Connection to PostgreSQL or MongoDB
+│   ├── env.go                                        # Loads environment variables
 │── database/                   
-│   ├── migrations/                                   <!-- 📌 SQL scripts for the database -->
-│   │   ├── 001_init.sql                              <!-- First migration with main tables -->
-│   ├── models/                                       <!-- 📌 Database models (Domain Entities) -->
-│   │   ├── user.go                                   <!-- User model -->
-│   │   ├── restaurant.go                             <!-- Restaurant model -->
-│   │   ├── menu.go                                   <!-- Menu model -->
-│   │   ├── order.go                                  <!-- Order model -->
-│   ├── repository/                                   <!-- 📌 Concrete repository implementations -->
-│   │   ├── user_repository_postgres.go               <!-- PostgreSQL implementation -->
-│   │   ├── user_repository_mongo.go                  <!-- MongoDB implementation -->
-│   │   ├── restaurant_repository_postgres.go         <!-- PostgreSQL implementation -->
-│   │   ├── restaurant_repository_mongo.go            <!-- MongoDB implementation -->
-│   │   ├── menu_repository_postgres.go               <!-- PostgreSQL implementation -->
-│   │   ├── menu_repository_mongo.go                  <!-- MongoDB implementation -->
-│   │   ├── order_repository_postgres.go              <!-- PostgreSQL implementation -->
-│   │   ├── order_repository_mongo.go                 <!-- MongoDB implementation -->
+│   ├── migrations/                                   # 📌 SQL scripts for the database
+│   │   ├── 001_init.sql                              # First migration with main tables
+│   ├── models/                                       # 📌 Database models (Domain Entities)
+│   │   ├── user.go                                   # User model
+│   │   ├── restaurant.go                             # Restaurant model
+│   │   ├── menu.go                                   # Menu model
+│   │   ├── order.go                                  # Order model
+│   ├── repository/                                   # 📌 Concrete repository implementations
+│   │   ├── user_repository_postgres.go               # PostgreSQL implementation
+│   │   ├── user_repository_mongo.go                  # MongoDB implementation
+│   │   ├── restaurant_repository_postgres.go         # PostgreSQL implementation
+│   │   ├── restaurant_repository_mongo.go            # MongoDB implementation
+│   │   ├── menu_repository_postgres.go               # PostgreSQL implementation
+│   │   ├── menu_repository_mongo.go                  # MongoDB implementation
+│   │   ├── order_repository_postgres.go              # PostgreSQL implementation
+│   │   ├── order_repository_mongo.go                 # MongoDB implementation
 │── internal/                   
 │   ├── user/                   
-│   │   ├── repository.go                             <!-- 📌 Repository interface (Contract) -->
+│   │   ├── repository.go                             # 📌 Repository interface (Contract)
 │   │   ├── usecase/             
-│   │   │   ├── create_user.go                        <!-- Use case: Create user -->
-│   │   │   ├── login_user.go                         <!-- Use case: User login -->
-│   │   │   ├── get_user.go                           <!-- Use case: Get user -->
-│   │   ├── module.go                                 <!-- Module configuration -->
-│   │   ├── controller.go                             <!-- HTTP controller -->
-│   │   ├── routes.go                                 <!-- Route definitions -->
+│   │   │   ├── create_user.go                        # Use case: Create user
+│   │   │   ├── login_user.go                         # Use case: User login
+│   │   │   ├── get_user.go                           # Use case: Get user
+│   │   ├── module.go                                 # Module configuration
+│   │   ├── controller.go                             # HTTP controller
+│   │   ├── routes.go                                 # Route definitions
 │   ├── restaurant/             
-│   │   ├── repository.go                             <!-- 📌 Repository interface (Contract) -->
+│   │   ├── repository.go                             # 📌 Repository interface (Contract)
 │   │   ├── usecase/             
 │   │   │   ├── create_restaurant.go 
 │   │   │   ├── close_restaurant.go
@@ -117,7 +118,7 @@ menu360/
 │   │   ├── controller.go       
 │   │   ├── routes.go           
 │   ├── menu/                   
-│   │   ├── repository.go                              <!-- 📌 Repository interface (Contract) -->
+│   │   ├── repository.go                              # 📌 Repository interface (Contract)
 │   │   ├── usecase/
 │   │   │   ├── create_menu.go
 │   │   │   ├── update_menu.go
@@ -125,7 +126,7 @@ menu360/
 │   │   ├── controller.go       
 │   │   ├── routes.go           
 │   ├── order/                  
-│   │   ├── repository.go                             <!-- 📌 Repository interface (Contract) -->
+│   │   ├── repository.go                             # 📌 Repository interface (Contract)
 │   │   ├── usecase/
 │   │   │   ├── create_order.go
 │   │   │   ├── cancel_order.go
@@ -133,23 +134,23 @@ menu360/
 │   ├── controller.go       
 │   ├── routes.go           
 │   ├── middleware/             
-│   │   ├── auth.go                                   <!-- Authentication middleware (JWT) -->
-│   │   ├── role.go                                   <!-- Role middleware -->
+│   │   ├── auth.go                                   # Authentication middleware (JWT)
+│   │   ├── role.go                                   # Role middleware
 │── router/                     
-│   ├── router.go                                     <!-- Global router -->
-│   ├── user_routes.go                                <!-- User module routes -->
-│   ├── restaurant_routes.go                          <!-- Restaurant module routes -->
-│   ├── menu_routes.go                                <!-- Menu module routes -->
-│   ├── order_routes.go                               <!-- Order module routes -->
+│   ├── router.go                                     # Global router
+│   ├── user_routes.go                                # User module routes
+│   ├── restaurant_routes.go                          # Restaurant module routes
+│   ├── menu_routes.go                                # Menu module routes
+│   ├── order_routes.go                               # Order module routes
 │── pkg/                        
-│   ├── logger.go                                     <!-- Centralized logging -->
-│── test/                                             <!-- 📂 Unit tests -->
-│── documentation/                                    <!-- 📌 Documentation folder -->
-│── go.mod                                            <!-- 📌 Go module -->
-│── Makefile                                          <!-- 📌 Automation scripts -->
-│── Dockerfile                                        <!-- 📌 Container configuration -->
-│── docker-compose.yml                                <!-- 📌 Stack with PostgreSQL and migrations -->
-│── .env                                              <!-- 📌 Environment variables -->
-│── README.md                                         <!-- 📌 Project documentation -->
-
+│   ├── logger.go                                     # Centralized logging
+│── test/                                             # 📂 Unit tests
+│── documentation/                                    # 📌 Documentation folder
+│── go.mod                                            # 📌 Go module
+│── Makefile                                          # 📌 Automation scripts
+│── Dockerfile                                        # 📌 Container configuration
+│── docker-compose.yml                                # 📌 Stack with PostgreSQL and migrations
+│── .env                                              # 📌 Environment variables
+│── README.md                                         # 📌 Project documentation
+ ```
 ---
