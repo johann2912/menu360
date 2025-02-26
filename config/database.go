@@ -11,7 +11,7 @@ import (
 
 var DB *sql.DB
 
-func ConnectDB() {
+func ConnectDB() *sql.DB {
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
 		os.Getenv("DB_HOST"),
@@ -23,13 +23,14 @@ func ConnectDB() {
 
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
-		log.Fatal("Error connecting to database:", err)
+		log.Fatal("❌ Error connecting to the database:", err)
 	}
 
 	if err := db.Ping(); err != nil {
-		log.Fatal("Database is unreachable:", err)
+		log.Fatal("❌ Database unreachable:", err)
 	}
 
 	DB = db
-	log.Println("Connected to PostgreSQL successfully")
+	log.Println("✅ Successful connection to PostgreSQL")
+	return DB 
 }

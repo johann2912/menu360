@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"menu360/config"
 	"menu360/internal/user"
@@ -8,18 +9,23 @@ import (
 )
 
 func main() {
+	fmt.Println("🚀 Server initializing...")
+
 	// Load environment variables and connect to the database
 	config.LoadEnv()
-	config.ConnectDB()
+	db := config.ConnectDB()
 
-	// Create the HTTP server
+	// ⚡ Initialize User module
+	userModule := user.NewModule(db)
+
+	// Configure router
 	mux := http.NewServeMux()
-
-	// Initialize user module and register routes
-	userModule := user.NewModule()
-	userModule.RegisterRoutes(mux)
+	user.RegisterRoutes(mux, userModule.Controller) // Register routes for the User module
 
 	// Start server
-	log.Println("Server running on :8080")
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	port := ":8080"
+	fmt.Printf("Server listening at http://localhost%s\n", port)
+	if err := http.ListenAndServe(port, mux); err != nil {
+		log.Fatalf("Error starting the server: %v", err)
+	}
 }
